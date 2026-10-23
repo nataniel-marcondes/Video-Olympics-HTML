@@ -1,18 +1,38 @@
 body {
-  background-color: lightblue;
+  background-color: rgb(209, 232, 240);
+  margin-left: 7%;
+  margin-right: 7%;
+}
+p {
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 h1 {
   color: rgb(22, 10, 187);
   text-align: center;
 }
+h3 {
+    color 
+}
 
- canvas {
-position: absolute;
-margin: auto;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
+section:not(#jogo) {
+    border: 2px dashed rgb(22, 10, 187);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 25px 0;
+}
 
+#jogo {
+    margin: 25px auto;
+    text-align: center;
+}
+
+canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border: 2px solid rgb(22, 10, 187);
+    background-color: black;
 }
