@@ -1,26 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Press+Start+2P&display=swap');
+
 body {
-  background-color: rgb(209, 232, 240);
+  background-color:#49757a;
   margin-left: 7%;
   margin-right: 7%;
+  font-family: 'Josefin Sans', sans-serif;
 }
-p {
+a{
+    color:#ff6094;
+}
+p,ul,li {
+    color: #25222f;
     margin-left: 2%;
     margin-right: 2%;
 }
 
 h1 {
-  color: rgb(22, 10, 187);
-  text-align: center;
+    color:#ffbf26;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    line-height: 1.6;
+    font-size: 24px;
+}
+header{
+    header 
+    color: #fff4e6;
+    text-align: center;
+
 }
 h3 {
-    color 
+    color:#ff6094;
+    font-family: 'Press Start 2P', cursive;
+    line-height: 1.6;
+    font-size: 14px;
 }
 
 section:not(#jogo) {
-    border: 2px dashed rgb(22, 10, 187);
-    border-radius: 15px;
+    background-color: #d2eed7;
+    border: 4px dashed 	#ff6094;
+    border-radius: 10px;
     padding: 20px;
-    margin: 25px 0;
+    margin: 15px 0;
 }
 
 #jogo {
@@ -33,6 +53,27 @@ canvas {
     max-width: 100%;
     height: auto;
     margin: 0 auto;
-    border: 2px solid rgb(22, 10, 187);
-    background-color: black;
+    border: 2px solid	#ffbf26;
+    background-color:#25222f;
+}
+.duas-colunas {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.duas-colunas section {
+    flex: 1;
+    min-width: 0;
+    border: 2px dashed 	#ff6094;
+    border-radius: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Em telas pequenas, coloca uma seção abaixo da outra */
+@media (max-width: 600px) {
+    .duas-colunas {
+        flex-direction: column;
+    }
 }
