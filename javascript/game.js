@@ -12,7 +12,7 @@ function main() {
         //DrawMenu
     }
     if (estado === "play") {
-        desenha();
+        draw();
         //move bola e players
         //colide
         //pontuação
@@ -34,11 +34,16 @@ function drawMenu() {
     pincel.textAlign = "left"
 }
 function drawGameOver() {
-
+    pincel.font = "50px Arial"
+    pincel.textAlign = "center"
+    pincel.fillText("Coisas de GameOver", 400, 300)
+    pincel.font = "22px Arial"
+    pincel.fillText("Pressione ESPAÇO para Reiniciar", 400, 380)
+    pincel.textAlign = "left"
 }
 
 
-function desenha() {
+function draw() {
     pincel.fillRect(player1.x, player1.y, player1.w, player1.h);
     pincel.fillRect(player2.x, player2.y, player2.w, player2.h);
     pincel.fillRect(bola.x, bola.y, bola.w, bola.h);
@@ -48,19 +53,25 @@ function desenha() {
     pincel.fillText("Pontos:" + player1.pts, 50, 650);
 }
 
+function moveBall() {
+    bola.x += bola.dirX
+    bola.y += bola.dirY
+}
+
 function move() {
     player1.y += player1.dir;
     player2.y += player2.dir;
     limits();
 }
 
-function limits(){
+function limits() {
     /*if(player colide com parede) {
     player.y = posLimite
     }*/
 }
 function reiniciar() {
-
+    player1.pts =0;
+    player2.pts =0;
 }
 
 document.addEventListener("keydown", function (event) {
