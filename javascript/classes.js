@@ -8,7 +8,11 @@ class Obj{
     } 
     desenha(pincel) {
         pincel.fillStyle = this.color;
-        pincel.fillRect(this.x, this.y, this.w, this.h);
+        if(this.color != null){
+            pincel.fillRect(this.x, this.y, this.w, this.h);
+        }else{
+            pincel.drawImage(this.imgPath, this.x, this.y, this.w, this.h)
+        }
     }
     collide(obj){
             if(
@@ -27,6 +31,7 @@ class Obj{
 class Bola extends Obj{
     dirX = 8;
     dirY = 2;
+    imgPath= new Image();
 }
 
 class Player extends Obj{

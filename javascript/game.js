@@ -32,7 +32,8 @@ function pararSom(som) {
 
 var player1 = new Player(30, 250, 15, 100, "#ffcc00");
 var player2 = new Player(755, 250, 15, 100, "#00ccff");
-var bola = new Bola((largura - 16) / 2, (altura - 16) / 2, 16, 16, "#ffffff");
+var bola = new Bola((largura - 16) / 2, (altura - 16) / 2, 16, 16, null);
+bola.imgPath.src= "imagens/bola.png"
 
 var pts1 = new Text();
 var pts2 = new Text();
@@ -296,7 +297,6 @@ document.addEventListener("keydown", function (event) {
     if (event.code === "Space") {
         if (estado === "menu" || estado === "over") {
             reiniciar();
-            console.log(event.code);
         }
     }
 });
