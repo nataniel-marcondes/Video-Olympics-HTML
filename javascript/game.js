@@ -9,9 +9,9 @@ var tBaixo = 400;
 
 var estado = "menu";
 
-var player1 = new Player(30, 250, 15, 100, "#00ccff");
-var player2 = new Player(755, 250, 15, 100, "#ffcc00");
-var bola = new Bola((largura-16)/2, (altura-16)/2, 16, 16, "ffffff");
+var player1 = new Player(30, 250, 15, 100, "#ffcc00");
+var player2 = new Player(755, 250, 15, 100, "#00ccff");
+var bola = new Bola((largura - 16) / 2, (altura - 16) / 2, 16, 16, "#ffffff");
 
 var pts1 = new Text();
 var pts2 = new Text();
@@ -45,20 +45,20 @@ function main() {
 setInterval(main, 20);
 
 function drawMenu() {
-    pincel.fillStyle = "white";
+    pincel.fillStyle = "yellow";
     pincel.textAlign = "center";
 
-    pincel.font = "50px Arial";
-    pincel.fillText("SOCCER", largura / 2, 260);
+    pincel.font = '35px "Press Start 2P"';
+    pincel.fillText("SOCCER ", largura / 2, 260);
 
-    pincel.font = "22px Arial";
+    pincel.font = '22px "Press Start 2P"';
     pincel.fillText(
         "Pressione ESPAÇO para iniciar",
         largura / 2,
         340
     );
 
-    pincel.font = "16px Arial";
+    pincel.font = '16 "Press Start 2P"';
     pincel.fillText("Jogador 1: W / S", largura / 2, 410);
     pincel.fillText("Jogador 2: ↑ / ↓", largura / 2, 440);
 
@@ -66,6 +66,12 @@ function drawMenu() {
 }
 
 function draw() {
+    pincel.fillStyle = "#1cbd5f";
+    pincel.fillRect(0, 0, 100, altura);
+    pincel.fillRect(200, 0, 100, altura);
+    pincel.fillRect(400, 0, 100, altura);
+    pincel.fillRect(600, 0, 100, altura);
+
     pincel.fillStyle = "white";
     pincel.strokeStyle = "white";
     pincel.lineWidth = 3;
@@ -81,19 +87,21 @@ function draw() {
 
 
     pincel.fillStyle = "#ffffff";
-    pincel.fillRect(0, tCima, 40, tBaixo-tCima);
-    pincel.fillRect(largura - 40, tCima, 40, tBaixo-tCima);
+    pincel.fillRect(0, tCima, 40, tBaixo - tCima);
+    pincel.fillRect(largura - 40, tCima, 40, tBaixo - tCima);
 
 
     pincel.strokeStyle = "white";
     pincel.lineWidth = 2;
-    
-    pincel.strokeRect(0, tCima, 40, tBaixo-tCima);
 
-    pincel.strokeRect(largura - 40, tCima, 40, tBaixo-tCima);
+    pincel.strokeRect(0, tCima, 40, tBaixo - tCima);
 
-    pincel.font = "24px Arial";
+    pincel.strokeRect(largura - 40, tCima, 40, tBaixo - tCima);
+
+    pincel.font = '16 "Press Start 2P"';
+    pincel.fillStyle = "orange";
     pincel.fillText("P1: " + player1.pts, 50, 50);
+    pincel.fillStyle = "blue";
     pincel.fillText("P2: " + player2.pts, 650, 50);
 
 
@@ -105,24 +113,21 @@ function draw() {
 }
 
 function drawGameOver() {
-    pincel.fillStyle = "white";
     pincel.textAlign = "center";
-
-    pincel.font = "42px Arial";
+    pincel.font = '16 "Press Start 2P"';
 
     if (player1.pts >= limitepts) {
+        pincel.fillStyle = "orange";
         pincel.fillText("JOGADOR 1 VENCEU!", largura / 2, 250);
     } else if (player2.pts >= limitepts) {
+        pincel.fillStyle = "blue";
         pincel.fillText("JOGADOR 2 VENCEU!", largura / 2, 250);
     }
 
-    pincel.font = "22px Arial";
-    pincel.fillText(
-        "Pressione ESPAÇO para jogar novamente",
-        largura / 2,
-        330
-    );
 
+    pincel.fillStyle = "yellow";
+    pincel.font = '16 "Press Start 2P"';
+    pincel.fillText("Pressione ESPAÇO para jogar novamente", largura / 2, 330);
     pincel.textAlign = "left";
 }
 
@@ -166,7 +171,7 @@ function collisions() {
         bola.dirX = Math.abs(bola.dirX);
 
         var impacto =
-            (bola.y + bola.h / 2 - (player1.y + player1.h / 2)) /(player1.h / 2);
+            (bola.y + bola.h / 2 - (player1.y + player1.h / 2)) / (player1.h / 2);
 
         bola.dirY = impacto * 5;
     }
@@ -177,7 +182,7 @@ function collisions() {
 
         var impacto =
             (bola.y + bola.h / 2 -
-            (player2.y + player2.h / 2)) /
+                (player2.y + player2.h / 2)) /
             (player2.h / 2);
 
         bola.dirY = impacto * 5;
@@ -232,7 +237,7 @@ function reiniciar() {
     estado = "play";
 }
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener("keydown", function (event) {
     if (["ArrowUp", "ArrowDown", "Space"].includes(event.code)
     ) {
         event.preventDefault();
@@ -262,7 +267,7 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
-document.addEventListener("keyup", function(event) {
+document.addEventListener("keyup", function (event) {
 
     if (event.key === "w") {
         player1.dir = 0;
