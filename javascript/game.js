@@ -9,6 +9,27 @@ var tBaixo = 400;
 
 var estado = "menu";
 
+
+var somColisao = new Audio("sounds/colisao.mp3");
+var somGoal = new Audio("sounds/goal.mp3");
+var somPonto1 = new Audio("sounds/ponto1.mp3");
+var somPonto2 = new Audio("sounds/ponto2.mp3");
+var somEndgame = new Audio("sounds/endgame.mp3");
+var musica = new Audio("sounds/music.mp3");
+ 
+musica.loop = true;
+musica.volume = 0.4;
+ 
+function tocar(som) {
+    som.currentTime = 0;
+    som.play().catch(function () { });
+}
+ 
+function pararSom(som) {
+    som.pause();
+    som.currentTime = 0;
+}
+
 var player1 = new Player(30, 250, 15, 100, "#ffcc00");
 var player2 = new Player(755, 250, 15, 100, "#00ccff");
 var bola = new Bola((largura - 16) / 2, (altura - 16) / 2, 16, 16, "#ffffff");
@@ -157,11 +178,13 @@ function moveBall() {
     if (bola.y <= 8) {
         bola.y = 8;
         bola.dirY = Math.abs(bola.dirY);
+        tocar(somColisao);  
     }
 
     if (bola.y + bola.h >= altura - 8) {
         bola.y = altura - bola.h - 8;
         bola.dirY = -Math.abs(bola.dirY);
+        tocar(somColisao);  
     }
 }
 
@@ -174,6 +197,7 @@ function collisions() {
             (bola.y + bola.h / 2 - (player1.y + player1.h / 2)) / (player1.h / 2);
 
         bola.dirY = impacto * 5;
+        tocar(somColisao);  
     }
 
     if (bola.collide(player2) && bola.dirX > 0) {
@@ -186,6 +210,7 @@ function collisions() {
             (player2.h / 2);
 
         bola.dirY = impacto * 5;
+        tocar(somColisao);  
     }
 }
 
@@ -195,20 +220,26 @@ function checkGoal() {
     if (bola.x <= 0) {
         if (centroBolaY >= tCima && centroBolaY <= tBaixo) {
             player2.pts++;
+            tocar(somGoal);
+            tocar(somPonto2);
             centralizarBola(-1);
         } else {
             bola.x = 0;
             bola.dirX = Math.abs(bola.dirX);
+            tocar(somColisao);  
         }
     }
 
     if (bola.x + bola.w >= largura) {
         if (centroBolaY >= tCima && centroBolaY <= tBaixo) {
             player1.pts++;
+            tocar(somGoal);
+            tocar(somPonto1);
             centralizarBola(1);
         } else {
             bola.x = largura - bola.w;
             bola.dirX = -Math.abs(bola.dirX);
+            tocar(somColisao);  
         }
     }
 }
@@ -219,6 +250,7 @@ function checkGameOver() {
         player2.pts >= limitepts
     ) {
         estado = "over";
+        pararSom(musica);
     }
 }
 
@@ -235,6 +267,8 @@ function reiniciar() {
     centralizarBola(Math.random() < 0.5 ? -1 : 1);
 
     estado = "play";
+    pararSom(somEndgame);
+    tocar(musica);
 }
 
 document.addEventListener("keydown", function (event) {
