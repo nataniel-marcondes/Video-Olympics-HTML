@@ -6,14 +6,16 @@ class Obj{
         this.h = h;
         this.color = color;
     } 
-    desenha(){
-
+    desenha(pincel) {
+        pincel.fillStyle = this.color;
+        pincel.fillRect(this.x, this.y, this.w, this.h);
     }
     collide(obj){
-            if(this.x < obj.x + obj.width &&
-                this.x + this.width > obj.x &&
-                this.y < obj.y + obj.height &&
-                this.y + this.height > obj.y){
+            if(
+                this.x < obj.x + obj.w &&
+                this.x + this.w > obj.x &&
+                this.y < obj.y + obj.h &&
+                this.y + this.h > obj.y){
                     return true;
                 }else {
                     return false;
