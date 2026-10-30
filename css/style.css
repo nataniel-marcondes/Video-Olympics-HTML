@@ -23,7 +23,7 @@ h1 {
     font-size: 24px;
 }
 header{
-    header 
+    /*header*/
     color: #fff4e6;
     text-align: center;
 
@@ -54,7 +54,7 @@ canvas {
     height: auto;
     margin: 0 auto;
     border: 2px solid	#ffbf26;
-    background-color:#25222f;
+    background-color:#176b3a;
 }
 .duas-colunas {
     display: flex;
